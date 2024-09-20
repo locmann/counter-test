@@ -29,18 +29,17 @@ body {
   min-height: 100vh;
 }
 
-/*#root {
-  max-width: 1280px;
+#root {
+
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}*/
+}
 
 button {
-  border: 1px solid black;
-  background-color: lightgray;
-  border-radius: 10px;
-  margin: 0 5px;
-  padding: 8px 16px;
+  border: 1px solid #ced5de;
+  border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
+  background: #fff;
 }

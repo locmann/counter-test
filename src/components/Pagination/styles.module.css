@@ -1,6 +1,11 @@
 
-
+.wrapper {
+  display: flex;
+  justify-content: right;
+  padding: 8px 16px;
+  gap: 8px;
+}
 
 .current {
-
+  background: #f2f5f8;
 }

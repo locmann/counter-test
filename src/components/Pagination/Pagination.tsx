@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { FC } from 'react';
+import styles from './styles.module.css';
 
 type Props = {
   pages: number;
@@ -17,11 +18,15 @@ const Pagination: FC<Props> = observer(({ pages, curPage, changePage }) => {
   const pageArr = Array.from({ length: pages }, (_, i) => i + 1);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {pageArr.map((p) => {
         if (p === 1 || p === pages || (p >= curPage - 2 && p <= curPage + 2)) {
           return (
-            <button key={p} onClick={() => handleClick(p)}>
+            <button
+              key={p}
+              onClick={() => handleClick(p)}
+              className={curPage === p ? styles.current : ''}
+            >
               {p}
             </button>
           );

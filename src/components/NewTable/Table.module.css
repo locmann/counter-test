@@ -11,6 +11,35 @@
   overflow: hidden;
 }
 
+.tableRow {
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.tableRow:hover {
+  cursor: pointer;
+}
+
+.deleteButton {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fed7d7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.tableRow:hover .deleteButton {
+  display: inline-block;
+}
+
 .table th,
 .table td {
   padding: 12px 15px;
@@ -71,20 +100,4 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-
-.pagination button.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.pagination button:hover {
-  background-color: #ddd;
 }

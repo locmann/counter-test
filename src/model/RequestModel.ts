@@ -1,4 +1,4 @@
-import { t } from 'mobx-state-tree';
+import { Instance, t } from 'mobx-state-tree';
 
 export const RequestModel = t
   .model('RequestModel', {
@@ -15,3 +15,5 @@ export const RequestModel = t
       return req.currentPage;
     },
   }));
+
+export type RequestModelType = Instance<typeof RequestModel>;

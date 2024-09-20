@@ -1,7 +1,7 @@
 import { flow, Instance, t } from 'mobx-state-tree';
 import { CounterModel } from './CounterModel.ts';
 import { fetchCounters } from '../helpers/fetchCounters.ts';
-import { RequestModel } from './RequestModel.ts';
+import { RequestModel, RequestModelType } from './RequestModel.ts';
 import { fetchAreas } from '../helpers/fetchAreas.ts';
 
 export const RootStore = t
@@ -17,40 +17,9 @@ export const RootStore = t
   })
 
   .actions((store) => ({
-    addCounter: flow(function* fetchData() {
-      try {
-        const data = yield fetchCounters();
-
-        store.request = {
-          count: data.count,
-          next: data.next,
-          previous: data.previous,
-          currentPage: 1,
-        };
-        store.counters = data.results;
-
-        const areaIds = [
-          ...new Set(
-            data.results.map(
-              (counter: { area: { id: string } }) => counter.area.id
-            )
-          ),
-        ];
-
-        const unknownAreaIds = areaIds.filter(
-          (id) => !store.areasCache.has(id as string)
-        );
-
-        if (unknownAreaIds.length > 0) {
-          const areas = yield fetchAreas(unknownAreaIds as string[]);
-          areas.forEach((area: { id: string; house: { address: string } }) => {
-            store.areasCache.set(area.id, area.house.address);
-          });
-        }
-      } catch (e: unknown) {
-        throw new Error((e as Error).message);
-      }
-    }),
+    deleteCounter(index: number) {
+      store.counters.splice(index, 1);
+    },
     getCounterAddress(id: string) {
       return store.areasCache.get(id);
     },
@@ -64,7 +33,7 @@ export const RootStore = t
           next: data.next,
           previous: data.previous,
           currentPage: toPage,
-        };
+        } as RequestModelType;
 
         store.counters = data.results;
 
@@ -86,8 +55,6 @@ export const RootStore = t
             store.areasCache.set(area.id, area.house.address);
           });
         }
-
-        //store.counters.push(...data.results);
       } catch (e: unknown) {
         throw new Error((e as Error).message);
       }
