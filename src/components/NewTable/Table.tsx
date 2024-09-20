@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './Table.module.css';
 import { useStore } from '../../model/RootStore.ts';
 import { observer } from 'mobx-react-lite';
+import Pagination from '../Pagination/Pagination.tsx';
 
 const Table = observer(() => {
-  const [currentPage, setCurrentPage] = useState(1);
-
   const rootStore = useStore();
 
   useEffect(() => {
-    rootStore.addCounter();
+    rootStore.changePage(1);
   }, []);
-
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className={styles.tableWrapper}>
@@ -38,24 +35,19 @@ const Table = observer(() => {
               </td>
               <td>{item.is_automatic ? 'Да' : 'Нет'}</td>
               <td>{item.initial_values[0]}</td>
-              <td>{item.area.id}</td>
+              <td>{rootStore.getCounterAddress(item.area.id)}</td>
               <td>{item.description}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Пагинация */}
       <div className={styles.pagination}>
-        {Array.from({ length: rootStore.request.pageNum }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => paginate(i + 1)}
-            className={currentPage === i + 1 ? styles.active : ''}
-          >
-            {i + 1}
-          </button>
-        ))}
+        <Pagination
+          pages={rootStore.request.pageNum}
+          curPage={rootStore.request.currentPage}
+          changePage={rootStore.changePage}
+        />
       </div>
     </div>
   );

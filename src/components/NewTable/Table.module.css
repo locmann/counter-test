@@ -14,18 +14,18 @@
 .table th,
 .table td {
   padding: 12px 15px;
-  border-top: 1px solid #ddd; /* Верхняя граница */
-  border-bottom: 1px solid #ddd; /* Нижняя граница */
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   text-align: left;
-  border-left: none; /* Убираем внутренние вертикальные границы */
-  border-right: none; /* Убираем внутренние вертикальные границы */
+  border-left: none;
+  border-right: none;
 }
 
 .table thead th {
-  position: sticky; /* Закрепляем заголовок */
-  top: 0; /* Заголовок будет закреплен сверху */
-  background-color: #f4f4f4; /* Цвет фона заголовка */
-  z-index: 1; /* Для того чтобы заголовок находился над контентом */
+  position: sticky;
+  top: 0;
+  background-color: #f4f4f4;
+  z-index: 1;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
@@ -38,7 +38,6 @@
   background-color: #fff;
 }
 
-/* Закругляем верхние углы для первой и последней ячейки заголовков */
 .table th:first-child {
   border-top-left-radius: 12px;
 }
@@ -46,7 +45,7 @@
   border-top-right-radius: 12px;
 }
 
-/* Закругляем нижние углы для первой и последней ячейки тела таблицы */
+
 .table tr:last-child td:first-child {
   border-bottom-left-radius: 12px;
 }
@@ -57,15 +56,15 @@
 .table thead {
   display: table;
   width: 100%;
-  table-layout: fixed; /* Фиксируем ширину колонок */
+  table-layout: fixed;
 }
 
 .table tbody {
   display: block;
-  max-height: 400px; /* Устанавливаем максимальную высоту для тела таблицы */
-  overflow-y: auto; /* Прокрутка только для тела таблицы */
+  max-height: 400px;
+  overflow-y: auto;
   width: 100%;
-  table-layout: fixed; /* Чтобы ширина колонок оставалась неизменной */
+  table-layout: fixed;
 }
 
 tbody tr {
@@ -74,21 +73,12 @@ tbody tr {
   table-layout: fixed;
 }
 
-
-/* Пагинация */
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.pagination button {
-  margin: 0 5px;
-  padding: 8px 16px;
-  border: none;
-  background-color: #f4f4f4;
-  cursor: pointer;
-}
 
 .pagination button.active {
   background-color: #007bff;

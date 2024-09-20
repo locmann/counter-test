@@ -1,4 +1,4 @@
-import { t } from 'mobx-state-tree';
+import { Instance, t } from 'mobx-state-tree';
 
 export const CounterModel = t.model('CounterModel', {
   id: t.string,
@@ -15,3 +15,5 @@ export const CounterModel = t.model('CounterModel', {
   brand_name: t.maybeNull(t.string),
   model_name: t.maybeNull(t.string),
 });
+
+export type CounterModelType = Instance<typeof CounterModel>;
