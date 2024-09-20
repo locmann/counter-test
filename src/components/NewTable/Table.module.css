@@ -1,0 +1,100 @@
+.tableWrapper {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border-top: 1px solid #ddd; /* Верхняя граница */
+  border-bottom: 1px solid #ddd; /* Нижняя граница */
+  text-align: left;
+  border-left: none; /* Убираем внутренние вертикальные границы */
+  border-right: none; /* Убираем внутренние вертикальные границы */
+}
+
+.table thead th {
+  position: sticky; /* Закрепляем заголовок */
+  top: 0; /* Заголовок будет закреплен сверху */
+  background-color: #f4f4f4; /* Цвет фона заголовка */
+  z-index: 1; /* Для того чтобы заголовок находился над контентом */
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+}
+
+.table td {
+  background-color: #fff;
+}
+
+/* Закругляем верхние углы для первой и последней ячейки заголовков */
+.table th:first-child {
+  border-top-left-radius: 12px;
+}
+.table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Закругляем нижние углы для первой и последней ячейки тела таблицы */
+.table tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+.table tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+.table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Фиксируем ширину колонок */
+}
+
+.table tbody {
+  display: block;
+  max-height: 400px; /* Устанавливаем максимальную высоту для тела таблицы */
+  overflow-y: auto; /* Прокрутка только для тела таблицы */
+  width: 100%;
+  table-layout: fixed; /* Чтобы ширина колонок оставалась неизменной */
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+/* Пагинация */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
