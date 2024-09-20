@@ -3,6 +3,7 @@ import { CounterModel } from './CounterModel.ts';
 import { fetchCounters } from '../helpers/fetchCounters.ts';
 import { RequestModel, RequestModelType } from './RequestModel.ts';
 import { fetchAreas } from '../helpers/fetchAreas.ts';
+import { fetchDelete } from '../helpers/fetchDelete.ts';
 
 export const RootStore = t
   .model('RootStore', {
@@ -17,9 +18,14 @@ export const RootStore = t
   })
 
   .actions((store) => ({
-    deleteCounter(index: number) {
-      store.counters.splice(index, 1);
-    },
+    deleteCounter: flow(function* deleteCounter(index: number, id: string) {
+      try {
+        yield fetchDelete(id);
+        store.counters.splice(index, 1);
+      } catch (e: unknown) {
+        throw new Error((e as Error).message);
+      }
+    }),
     getCounterAddress(id: string) {
       return store.areasCache.get(id);
     },

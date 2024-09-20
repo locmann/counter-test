@@ -1,4 +1,4 @@
-import Table from './components/NewTable/Table.tsx';
+import Table from './components/Table/Table.tsx';
 
 function App() {
   return (
